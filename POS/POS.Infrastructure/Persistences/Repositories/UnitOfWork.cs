@@ -1,23 +1,35 @@
 
+using POS.Infrastructure.Persistences.Context;
 using POS.Infrastructure.Persistences.Interfaces;
 
 namespace POS.Infrastructure.Persistences.Repositories;
 public class UnitOfWork : IUnitOfWork
 {
-    public IUserRepository User => throw new NotImplementedException();
+    private readonly FormContext _context;
+
+    // Declacion de la interfaz
+    public IUserRepository User {get; private set; }
+
+    public UnitOfWork(FormContext context)
+    {
+        this._context = context;
+        User = new UserRepository(_context);
+    }
+
+    // Liberar los recursos del sistema
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        _context.Dispose();
     }
 
     public void SaveChanges()
     {
-        throw new NotImplementedException();
+        _context.SaveChanges();
     }
 
-    public Task SaveChangesAsync()
+    public async Task SaveChangesAsync()
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 }
