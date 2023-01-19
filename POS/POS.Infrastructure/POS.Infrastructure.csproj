@@ -6,4 +6,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Dto\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Persistences\Interfaces\" />
+    <Folder Include="Persistences\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\POS.Doamin\POS.Doamin.csproj" />
+    <ProjectReference Include="..\POS.Utilities\POS.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>
