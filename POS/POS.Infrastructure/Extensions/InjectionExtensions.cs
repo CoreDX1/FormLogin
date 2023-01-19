@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using POS.Infrastructure.Persistences.Context;
+using POS.Infrastructure.Persistences.Interfaces;
+using POS.Infrastructure.Persistences.Repositories;
 
 namespace POS.Infrastructure.Extensions;
 
@@ -32,6 +34,7 @@ public static class InjectionExtensions
                 ),
             ServiceLifetime.Transient
         );
+        service.AddTransient<IUnitOfWork, UnitOfWork>();
         return service;
     }
 }
