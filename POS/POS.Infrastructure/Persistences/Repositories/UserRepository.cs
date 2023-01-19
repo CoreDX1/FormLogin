@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using POS.Doamin.Entities;
 using POS.Infrastructure.Persistences.Context;
 using POS.Infrastructure.Persistences.Interfaces;
@@ -13,28 +14,39 @@ public class UserRepository : IUserRepository
         this._context = context;
     }
 
-    public Task<IEnumerable<User>> ListUser()
+    public async Task<IEnumerable<User>> ListUser()
     {
-        throw new NotImplementedException();
+        var user = await _context.Users
+            .Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
+        return user;
+    }
+  public async Task<User> UserById(int UserId)
+    {
+        var user = await _context.Users!.AsNoTracking().SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
+        return user!;
+    }
+  public async Task<bool> RegisterUser(User user)
+    {
+        await _context.AddAsync(user);
+        var recordAffected = await _context.SaveChangesAsync();
+        return true;
     }
 
-    public Task<bool> editUser(User user)
+    public async Task<bool> editUser(User user)
     {
-        throw new NotImplementedException();
+        _context.Update(user);
+        _context.Entry(user).Property(x => x.DateRegister).IsModified = false;
+        await _context.SaveChangesAsync();
+        return true;
     }
 
-    public Task<bool> RegisterUser(User user)
+  
+    public async Task<bool> RemoveUser(int UserId)
     {
-        throw new NotImplementedException();
+        var user = await _context.Users.AsNoTracking().SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
+        _context.Update(user);
+        await _context.SaveChangesAsync()
+        return true;
     }
 
-    public Task<bool> RemoveUser(int UserId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<User> UserById(int UserId)
-    {
-        throw new NotImplementedException();
-    }
-}
+  }
