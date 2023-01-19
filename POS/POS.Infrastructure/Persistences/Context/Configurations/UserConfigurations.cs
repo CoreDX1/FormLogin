@@ -21,6 +21,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
             .HasColumnType("datetime")
             .HasColumnName("dateRegister");
         builder.Property(e => e.Email).HasMaxLength(100).IsUnicode(false).HasColumnName("email");
+        builder.Property(e => e.Password).HasMaxLength(100).HasColumnName("password");
         builder
             .Property(e => e.LastName)
             .HasMaxLength(50)
