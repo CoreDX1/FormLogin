@@ -3,7 +3,7 @@ using POS.Application.Dtos.Request;
 
 namespace POS.Application.Validators.User;
 
-internal class UserValidator : AbstractValidator<UserRequestDto>
+public class UserValidator : AbstractValidator<UserRequestDto>
 {
     public UserValidator()
     {

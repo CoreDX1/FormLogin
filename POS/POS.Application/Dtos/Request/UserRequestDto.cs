@@ -1,6 +1,6 @@
 ﻿namespace POS.Application.Dtos.Request;
 
-internal class UserRequestDto
+public class UserRequestDto
 {
     public string? Name { get; set; }
 

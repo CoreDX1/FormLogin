@@ -10,7 +10,7 @@ using POS.Utilities.Static;
 
 namespace POS.Application.Services;
 
-internal class UserApplication : IUserApplication
+public class UserApplication : IUserApplication
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -26,7 +26,7 @@ internal class UserApplication : IUserApplication
     public async Task<BaseReponse<IEnumerable<UserSelectResponseDto>>> ListSelectUser()
     {
         var response = new BaseReponse<IEnumerable<UserSelectResponseDto>>();
-        var user = await _unitOfWork.User.ListUser();
+        var user = await _unitOfWork.User.ListSelectUser();
         if (user is not null)
         {
             response.IsSuccess = true;
@@ -96,7 +96,7 @@ internal class UserApplication : IUserApplication
         }
         var user = _mapper.Map<User>(requestDto);
         user.UserId = UserId;
-        response.Data = await _unitOfWork.User.editUser(user);
+        response.Data = await _unitOfWork.User.EditUser(user);
         if (response.Data)
         {
             response.IsSuccess = true;

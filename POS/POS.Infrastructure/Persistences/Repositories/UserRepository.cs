@@ -14,7 +14,7 @@ public class UserRepository : IUserRepository
         this._context = context;
     }
 
-    public async Task<IEnumerable<User>> ListUser()
+    public async Task<IEnumerable<User>> ListSelectUser()
     {
         var user = await _context.Users.Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
         return user;
@@ -35,7 +35,7 @@ public class UserRepository : IUserRepository
         return true;
     }
 
-    public async Task<bool> editUser(User user)
+    public async Task<bool> EditUser(User user)
     {
         _context.Update(user);
         _context.Entry(user).Property(x => x.DateRegister).IsModified = false;

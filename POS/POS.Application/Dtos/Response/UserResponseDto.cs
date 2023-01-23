@@ -1,6 +1,6 @@
 ﻿namespace POS.Application.Dtos.Response;
 
-internal class UserResponseDto
+public class UserResponseDto
 {
     public int UserId { get; set; }
     public string Name { get; set; } = null!;

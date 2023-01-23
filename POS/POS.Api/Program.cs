@@ -1,3 +1,4 @@
+using POS.Application.Extensions;
 using POS.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Usar el servicio
 var Configuration = builder.Configuration;
 builder.Services.AddInjectionInfrastructure(Configuration);
+builder.Services.AddInjectionApplication(Configuration);
 
 builder.Services.AddControllers();
 

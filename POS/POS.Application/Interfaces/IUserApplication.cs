@@ -5,7 +5,7 @@ using POS.Infrastructure.Commons.Bases.Response;
 
 namespace POS.Application.Interfaces;
 
-internal interface IUserApplication
+public interface IUserApplication
 {
     Task<BaseReponse<IEnumerable<UserSelectResponseDto>>> ListSelectUser();
     Task<BaseReponse<UserResponseDto>> UserById(int UserId);

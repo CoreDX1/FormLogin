@@ -14,6 +14,6 @@ internal class UserMappingsProfile : Profile
         CreateMap<User, UserResponseDto>();
         CreateMap<BaseIntityResponse<User>, BaseIntityResponse<UserResponseDto>>().ReverseMap();
         CreateMap<UserRequestDto, User>();
-        CreateMap<User, UserSelectResponseDto>();
+        CreateMap<User, UserSelectResponseDto>().ReverseMap();
     }
 }

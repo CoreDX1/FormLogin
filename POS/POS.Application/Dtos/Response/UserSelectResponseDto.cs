@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POS.Application.Dtos.Response
 {
-    internal class UserSelectResponseDto
+    public class UserSelectResponseDto
     {
         public int UserId { get; set; }
         public string? Name { get; set; }
