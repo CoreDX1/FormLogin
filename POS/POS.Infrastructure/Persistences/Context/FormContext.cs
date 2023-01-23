@@ -11,8 +11,9 @@ public partial class FormContext : DbContext
 
     public FormContext(DbContextOptions<FormContext> options) : base(options) { }
 
-    public virtual DbSet<Rol> Rols { get; set; }
+    public virtual DbSet<Rol> Rol { get; set; }
 
+    // Al parecer influe el nombre que le des al metodo en las busqueda de tablas
     public virtual DbSet<User> User { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

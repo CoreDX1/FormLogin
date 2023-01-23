@@ -11,7 +11,7 @@ public partial class User
     public string LastName { get; set; } = null!;
     public string Email { get; set; } = null!;
     public byte Status { get; set; }
-    public DateTime DateRegister { get; set; }
+    public DateTime? DateRegister { get; set; }
     public int RolId { get; set; }
     public virtual Rol Rol { get; set; } = null!;
 }

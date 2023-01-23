@@ -18,7 +18,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
         builder
             .Property(e => e.DateRegister)
             .HasDefaultValueSql("(getdate())")
-            .HasColumnType("datetime")
+            .HasColumnType("datetime2")
             .HasColumnName("dateRegister");
         builder.Property(e => e.Email).HasMaxLength(100).IsUnicode(false).HasColumnName("email");
         builder.Property(e => e.Password).HasMaxLength(100).HasColumnName("password");

@@ -1,0 +1,16 @@
+@ruta = http://localhost:5064/api/User
+
+### List User
+GET {{ruta}}/Select
+Content-Type: application/json
+
+### Register User
+POST {{ruta}}/Register
+Content-Type: application/json
+
+{
+  "name": "Pedro",
+  "lastName": "catulo",
+  "email": "pedro@gmail.com",
+  "password": "index"
+}
