@@ -48,7 +48,7 @@ public class UserRepository : IUserRepository
         var user = await _context.User
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
-        _context.Update(user);
+        _context.Remove(user);
         await _context.SaveChangesAsync();
         return true;
     }
