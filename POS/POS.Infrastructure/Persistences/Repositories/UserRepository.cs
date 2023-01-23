@@ -16,13 +16,13 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> ListSelectUser()
     {
-        var user = await _context.Users.Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
+        var user = await _context.User.Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
         return user;
     }
 
     public async Task<User> UserById(int UserId)
     {
-        var user = await _context.Users!
+        var user = await _context.User!
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
         return user!;
@@ -45,7 +45,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> RemoveUser(int UserId)
     {
-        var user = await _context.Users
+        var user = await _context.User
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
         _context.Update(user);
