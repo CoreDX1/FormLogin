@@ -14,12 +14,6 @@ public partial class FormContext : DbContext
     public virtual DbSet<Rol> Rols { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-        optionsBuilder.UseSqlServer(
-            "Server=DESKTOP-G3QA925;Database=form;TrustServerCertificate=True;User iD=sa;Password=index"
-        );
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         OnModelCreatingPartial(modelBuilder);
