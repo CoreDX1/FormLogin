@@ -17,8 +17,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
         builder.Property(e => e.UserId).HasColumnName("userId");
         builder
             .Property(e => e.DateRegister)
-            .HasDefaultValueSql("(getdate())")
-            .HasColumnType("datetime2")
+            .HasColumnType("datetime")
             .HasColumnName("dateRegister");
         builder.Property(e => e.Email).HasMaxLength(100).IsUnicode(false).HasColumnName("email");
         builder.Property(e => e.Password).HasMaxLength(100).HasColumnName("password");
@@ -29,7 +28,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
             .HasColumnName("lastName");
         builder.Property(e => e.Name).HasMaxLength(50).IsUnicode(false).HasColumnName("name");
         builder.Property(e => e.RolId).HasColumnName("rolId");
-        builder.Property(e => e.Status).HasDefaultValueSql("((1))").HasColumnName("status");
+        builder.Property(e => e.Status).HasColumnName("status");
 
         builder
             .HasOne(d => d.Rol)
