@@ -3,6 +3,7 @@ CREATE TABLE [User](
     [name]          [VARCHAR]            (50)     NOT NULL,
     [lastName]      [VARCHAR]            (50)     NOT NULL,
     [email]         [VARCHAR]            (100)    NOT NULL UNIQUE,
+    [password]      [VARCHAR]            (50)     NOT NULL,
     [status]        [TINYINT]                     NOT NULL DEFAULT 1,
     [dateRegister]  [DATETIME]                    NOT NULL DEFAULT GETDATE(),
     [rolId]         [INT]                         NOT NULL,
@@ -22,8 +23,8 @@ select * from [Rol];
 INSERT INTO [Rol]
 VALUES('admin'),('usuario');
 
-INSERT INTO [User](name, lastName,email,rolId)
-VALUES('juan','perez','juan.com', 4);
+INSERT INTO [User](name,lastName,email,password,rolId)
+VALUES('camilo','perez','camilo@gmail.com','index123', 1);
 
 select * from [User];
 

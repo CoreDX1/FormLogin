@@ -23,13 +23,11 @@ internal class UserApplication : IUserApplication
         _validationRules = validationRules;
     }
 
-
-
     public async Task<BaseReponse<IEnumerable<UserSelectResponseDto>>> ListSelectUser()
     {
         var response = new BaseReponse<IEnumerable<UserSelectResponseDto>>();
         var user = await _unitOfWork.User.ListUser();
-        if(user is not null)
+        if (user is not null)
         {
             response.IsSuccess = true;
             response.Data = _mapper.Map<IEnumerable<UserSelectResponseDto>>(user);
@@ -42,11 +40,12 @@ internal class UserApplication : IUserApplication
         }
         return response;
     }
+
     public async Task<BaseReponse<UserResponseDto>> UserById(int UserId)
     {
         var response = new BaseReponse<UserResponseDto>();
         var user = await _unitOfWork.User.UserById(UserId);
-        if(user is not null)
+        if (user is not null)
         {
             response.IsSuccess = true;
             response.Data = _mapper.Map<UserResponseDto>(user);
@@ -85,11 +84,12 @@ internal class UserApplication : IUserApplication
         }
         return response;
     }
+
     public async Task<BaseReponse<bool>> EditUser(int UserId, UserRequestDto requestDto)
     {
         var response = new BaseReponse<bool>();
         var userEdit = await UserById(UserId);
-        if(userEdit is not null)
+        if (userEdit is not null)
         {
             response.IsSuccess = false;
             response.Message = ReplyMessage.MESSAGE_QUERY_EMTY;
@@ -114,7 +114,7 @@ internal class UserApplication : IUserApplication
     {
         var response = new BaseReponse<bool>();
         var user = await UserById(UserId);
-        if(user.Data is not null)
+        if (user.Data is not null)
         {
             response.IsSuccess = false;
             response.Message = ReplyMessage.MESSAGE_QUERY_EMTY;

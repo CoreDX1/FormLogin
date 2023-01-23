@@ -16,16 +16,19 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> ListUser()
     {
-        var user = await _context.Users
-            .Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
+        var user = await _context.Users.Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
         return user;
     }
-  public async Task<User> UserById(int UserId)
+
+    public async Task<User> UserById(int UserId)
     {
-        var user = await _context.Users!.AsNoTracking().SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
+        var user = await _context.Users!
+            .AsNoTracking()
+            .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
         return user!;
     }
-  public async Task<bool> RegisterUser(User user)
+
+    public async Task<bool> RegisterUser(User user)
     {
         await _context.AddAsync(user);
         var recordAffected = await _context.SaveChangesAsync();
@@ -40,13 +43,13 @@ public class UserRepository : IUserRepository
         return true;
     }
 
-  
     public async Task<bool> RemoveUser(int UserId)
     {
-        var user = await _context.Users.AsNoTracking().SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
+        var user = await _context.Users
+            .AsNoTracking()
+            .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
         _context.Update(user);
         await _context.SaveChangesAsync();
         return true;
     }
-
-  }
+}

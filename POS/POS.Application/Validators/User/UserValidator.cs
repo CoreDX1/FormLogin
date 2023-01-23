@@ -8,7 +8,9 @@ internal class UserValidator : AbstractValidator<UserRequestDto>
     public UserValidator()
     {
         RuleFor(x => x.Name)
-            .NotNull().WithMessage("El campo Nombre no pude ser nulo").NotEmpty().WithMessage("El campo Nombre no pude ser vacio");
+            .NotNull()
+            .WithMessage("El campo Nombre no pude ser nulo")
+            .NotEmpty()
+            .WithMessage("El campo Nombre no pude ser vacio");
     }
-
 }
