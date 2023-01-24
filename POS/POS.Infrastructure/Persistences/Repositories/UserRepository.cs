@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
     public async Task<bool> RegisterUser(User user)
     {
         await _context.AddAsync(user);
-        var recordAffected = await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
         return true;
     }
 
@@ -48,7 +48,7 @@ public class UserRepository : IUserRepository
         var user = await _context.User
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
-        _context.Remove(user);
+        _context.Remove<User>(user);
         await _context.SaveChangesAsync();
         return true;
     }
