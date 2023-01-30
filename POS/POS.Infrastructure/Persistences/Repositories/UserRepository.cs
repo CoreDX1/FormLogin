@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using POS.Doamin.Entities;
 using POS.Infrastructure.Persistences.Context;
 using POS.Infrastructure.Persistences.Interfaces;
+using POS.Utilities.Static;
 
 namespace POS.Infrastructure.Persistences.Repositories;
 
@@ -16,7 +17,10 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> ListSelectUser()
     {
-        var user = await _context.User.Where(x => x.Status.Equals(1)).AsNoTracking().ToListAsync();
+        var user = await _context.User
+            .Where(x => x.Status.Equals((int)StateType.Activo))
+            .AsNoTracking()
+            .ToListAsync();
         return user;
     }
 
@@ -48,8 +52,8 @@ public class UserRepository : IUserRepository
         var user = await _context.User
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.UserId.Equals(UserId));
-        _context.Remove<User>(user);
-        await _context.SaveChangesAsync();
-        return true;
+        _context.Remove(user);
+        var recordsAffected = await _context.SaveChangesAsync();
+        return recordsAffected > 0;
     }
 }

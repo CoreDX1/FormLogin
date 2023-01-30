@@ -26,7 +26,7 @@ public class UserApplication : IUserApplication
     public async Task<BaseReponse<IEnumerable<UserSelectResponseDto>>> ListSelectUser()
     {
         var response = new BaseReponse<IEnumerable<UserSelectResponseDto>>();
-        var user = await _unitOfWork.User.ListSelectUser();
+        IEnumerable<User> user = await _unitOfWork.User.ListSelectUser();
         if (user is not null)
         {
             response.IsSuccess = true;
@@ -89,10 +89,11 @@ public class UserApplication : IUserApplication
     {
         var response = new BaseReponse<bool>();
         var userEdit = await UserById(UserId);
-        if (userEdit is not null)
+        if (userEdit.Data is null)
         {
             response.IsSuccess = false;
             response.Message = ReplyMessage.MESSAGE_QUERY_EMTY;
+            return response;
         }
         var user = _mapper.Map<User>(requestDto);
         user.UserId = UserId;
@@ -114,10 +115,11 @@ public class UserApplication : IUserApplication
     {
         var response = new BaseReponse<bool>();
         var user = await UserById(UserId);
-        if (user.Data is not null)
+        if (user.Data is null)
         {
             response.IsSuccess = false;
             response.Message = ReplyMessage.MESSAGE_QUERY_EMTY;
+            return response;
         }
         response.Data = await _unitOfWork.User.RemoveUser(UserId);
         if (response.Data)

@@ -14,3 +14,18 @@ Content-Type: application/json
   "email": "pedro@gmail.com",
   "password": "index"
 }
+### Delete User
+DELETE {{ruta}}/Remove/22
+Content-Type: application/json
+
+### Edit User
+
+PUT {{ruta}}/Edit/25
+Content-Type: application/json
+
+{
+  "name": "Rodolfo",
+  "lastName": "Astro",
+  "email": "rodolfo@gmailcom",
+  "password": "index"
+}
