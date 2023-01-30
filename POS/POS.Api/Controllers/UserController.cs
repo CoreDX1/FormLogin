@@ -25,28 +25,32 @@ public class UserController : Controller
 
     [HttpGet]
     [Route("{userId:int}")]
-    public async Task<IActionResult> UserById(int userId){
+    public async Task<IActionResult> UserById(int userId)
+    {
         var resposen = await _userApplication.UserById(userId);
         return Ok(resposen);
     }
 
     [HttpPost]
     [Route("Register")]
-    public async Task<IActionResult> RegisterUser([FromBody] UserRequestDto requestDto){
+    public async Task<IActionResult> RegisterUser([FromBody] UserRequestDto requestDto)
+    {
         var response = await _userApplication.RegisterUser(requestDto);
         return Ok(response);
     }
 
     [HttpPut]
     [Route("Edit/{userId:int}")]
-    public async Task<IActionResult> EditUser(int userId,[FromBody] UserRequestDto requestDto){
+    public async Task<IActionResult> EditUser(int userId, [FromBody] UserRequestDto requestDto)
+    {
         var response = await _userApplication.EditUser(userId, requestDto);
         return Ok(response);
     }
 
-    [HttpPut]
+    [HttpDelete]
     [Route("Remove/{userId:int}")]
-    public async Task<IActionResult> RemoveUser(int userId){
+    public async Task<IActionResult> RemoveUser(int userId)
+    {
         var response = await _userApplication.RemoveUser(userId);
         return Ok(response);
     }
